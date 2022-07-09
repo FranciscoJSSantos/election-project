@@ -1,0 +1,15 @@
+header{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #181d40;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  height: 80px;
+}
+
+.imagem_simbolo_eleicao{
+  margin-left: 1rem;
+}
