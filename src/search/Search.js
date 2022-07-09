@@ -1,7 +1,8 @@
 import React from 'react';
 import './Search.css';
-import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
+import FormDialog from '../FormDialog/FormDialog';
 
 
 function Search(){
@@ -13,9 +14,7 @@ function Search(){
         <IoIosArrowDown className="search_icon_arrow"/>
       </div>
       <div>
-        <button className="search_button">
-          <FaSearch />
-        </button>
+        <FormDialog/>
       </div>
     </div>
   )

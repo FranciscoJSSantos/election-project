@@ -1,0 +1,52 @@
+.button_search{
+  background-color:  #181d40;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+
+  border-radius: 25%;
+  font-size: 1.6em;
+}
+
+.dialog-content{
+  overflow-x: hidden !important;
+}
+
+.MuiButton-root {
+  background-color: #181d40;
+  color: #fff;
+}
+
+.MuiDialog-paperWidthSm {
+  height: 50%;
+  width: 20%;
+}
+
+@media screen and (min-width: 1024px){
+
+  .MuiDialog-paperWidthSm {
+    height: 50%;
+    width: 100rem !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .MuiDialog-paperWidthSm {
+    height: 50%;
+    width: 100rem !important;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .MuiDialog-paperWidthSm {
+    height: 50%;
+    width: 100rem !important;
+  }
+}
+
+.MuiButton-text {
+  font-size: 1.2em !important;
+  background-color: #181d40 !important;
+  color: #fff !important;
+}
+
