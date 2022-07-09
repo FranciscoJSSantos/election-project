@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/election-project/static/css/main.80a6a730.css",
+    "main.js": "/election-project/static/js/main.1f44e428.js",
+    "index.html": "/election-project/index.html",
+    "main.80a6a730.css.map": "/election-project/static/css/main.80a6a730.css.map",
+    "main.1f44e428.js.map": "/election-project/static/js/main.1f44e428.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80a6a730.css",
+    "static/js/main.1f44e428.js"
+  ]
+}
