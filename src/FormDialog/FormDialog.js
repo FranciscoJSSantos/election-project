@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import DialogActions from '@mui/material/DialogActions';
 import './FormDialog.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -89,6 +90,9 @@ export default function FormDialog() {
             </IconButton>
           </Paper>
         </DialogContent>
+        <DialogActions sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
+          <Button onClick={handleClose}>Confirmar</Button>
+        </DialogActions>
       </Dialog>
     </div>
   );
