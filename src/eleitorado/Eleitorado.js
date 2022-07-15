@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Eleitorado.css';
 
 function Eleitorado(){
@@ -14,10 +14,24 @@ function Eleitorado(){
     { id: 9, nome: "Celso Russomanno", sigla: "REPUBLICANOS", imagem: "https://img.estadao.com.br/fotos/politica/eleicoes-2020/SP/FSP250001094597_div.jpg", qtdTotalVotos: 560666, porcentagemVotos: 10.50}
   ]
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+
   return (
     <div className="container_eleitorado">
-      {dadosEleicoes.map((dados) => (
-        <div className="container_candidate" key={dados.id}>
+      {/* <input type="text" 
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
+        }}/> */}
+
+      {dadosEleicoes.filter((dados) => {
+        if(searchTerm === ''){
+          return dados;
+        }else if(dados.nome.toLowerCase().includes(searchTerm.toLowerCase()) || dados.sigla.toLowerCase().includes(searchTerm.toLowerCase())){
+          return dados;
+        }
+      }).map((dados, key) => (
+        <div className="container_candidate" key={key}>
         <div className="container_imagem">
           <div className="imagem_eleitorado--landscape">
             <img className="imagem_eleitorado" src={dados.imagem} alt="Eleitorados" />
