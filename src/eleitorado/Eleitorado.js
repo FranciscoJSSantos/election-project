@@ -17,7 +17,7 @@ function Eleitorado(){
   return (
     <div className="container_eleitorado">
       {dadosEleicoes.map((dados) => (
-        <div className="container_candidate">
+        <div className="container_candidate" key={dados.id}>
         <div className="container_imagem">
           <div className="imagem_eleitorado--landscape">
             <img className="imagem_eleitorado" src={dados.imagem} alt="Eleitorados" />

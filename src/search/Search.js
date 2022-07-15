@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,23 +20,41 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography'
 
-
-
+import api from '../api';
 
 function Search(){
 
   const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState('');
+
+  //pega o valor do estado
+  const [getMunicipio, setMunicipio] = React.useState('');
+
+  const [getNewMunicipio, setNewMunicipio] = React.useState([]);
+
   const [city, setCity] = React.useState('');
 
+  //está com a lista de estados
+  const [user, setUser] = React.useState([]);
+
+  React.useEffect(() => {
+    api
+      .get("?orderBy=nome")
+      .then((response) => {
+        setUser(response.data)
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
   const handleChangeState = (event) => {
-    setState(Number(event.target.value) || '');
+    setMunicipio(String(event.target.value) || '');
   };
 
-  const handleChangeCity = (event) => {
-    setCity(Number(event.target.value) || '');
+  const handleChangeState2 = (event) => {
+    setCity(String(event.target.value) || '');
   };
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -75,11 +92,23 @@ function Search(){
     );
   });
 
+  React.useEffect(() => {
+    api
+      .get(`${getMunicipio}/distritos`)
+      .then((response) => {
+        setNewMunicipio(response.data)
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, [getMunicipio]);
+
   return( 
     <div className="search_container">
+
       <div className="search_dropdown">
         <FaMapMarkerAlt className="search_icon_map"/>
-        <p>Aracaju, SE</p>
+        <p>{city}, {getMunicipio}</p>
         <IoIosArrowDown className="search_icon_arrow" onClick={handleClickOpen}/>
       </div>
 
@@ -92,32 +121,40 @@ function Search(){
           <Box component="form" sx={{ display: 'grid', alignItems: 'center'}}>
           <FormControl sx={{ m: 1, width: '96%' }} >
               <InputLabel id="demo-simple-select-autowidth-label">Estado</InputLabel>
+
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
-                value={state}
+                value={getMunicipio}
                 onChange={handleChangeState}
-                input={<OutlinedInput label="Estado" />}
+                input={<OutlinedInput label="Estado" 
+                key={Math.random() * 100}/>}
+                defaultValue=""
               >
-                <MenuItem value={10}>Sergipe</MenuItem>
-                <MenuItem value={20}>São Paulo</MenuItem>
-                <MenuItem value={30}>Bahia</MenuItem>
+                {user.map((dados) => (
+                    <MenuItem key={dados.id} value={dados.sigla}>{dados.nome}
+                    </MenuItem>
+                ))}
+               
               </Select>
             </FormControl>
             <FormControl sx={{ m: 1, width: '96%' }} fullWidth>
               <InputLabel id="demo-simple-select-autowidth-label">Município</InputLabel>
+
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
                 value={city}
-                onChange={handleChangeCity}
+                onChange={handleChangeState2}
                 input={<OutlinedInput label="Município" />}
+                defaultValue=""
               >
-                <MenuItem value={10}>Aracaju</MenuItem>
-                <MenuItem value={20}>Lagarto</MenuItem>
-                <MenuItem value={30}>Itabaiana</MenuItem>
-                <MenuItem value={40}>São Cristóvão</MenuItem>
+                {getNewMunicipio.map((dados) => (
+                    <MenuItem key={dados.id} value={dados.nome}>{dados.nome}
+                    </MenuItem>
+                ))}
               </Select>
+
             </FormControl>
           </Box>
         </DialogContent>
