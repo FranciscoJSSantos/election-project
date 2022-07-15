@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/election-project/static/css/main.16babb3d.css",
-    "main.js": "/election-project/static/js/main.1e83b9a8.js",
+    "main.css": "/election-project/static/css/main.9115e15d.css",
+    "main.js": "/election-project/static/js/main.1bd889e9.js",
     "index.html": "/election-project/index.html",
-    "main.16babb3d.css.map": "/election-project/static/css/main.16babb3d.css.map",
-    "main.1e83b9a8.js.map": "/election-project/static/js/main.1e83b9a8.js.map"
+    "main.9115e15d.css.map": "/election-project/static/css/main.9115e15d.css.map",
+    "main.1bd889e9.js.map": "/election-project/static/js/main.1bd889e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.16babb3d.css",
-    "static/js/main.1e83b9a8.js"
+    "static/css/main.9115e15d.css",
+    "static/js/main.1bd889e9.js"
   ]
 }
