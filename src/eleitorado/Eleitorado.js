@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Eleitorado.css';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function Eleitorado(){
    const dadosEleicoes = [
@@ -13,9 +15,8 @@ function Eleitorado(){
     { id: 8, nome: "Márcio França", sigla: "PSB", imagem: "https://img.estadao.com.br/fotos/politica/eleicoes-2020/SP/FSP250001012981_div.jpg", qtdTotalVotos: 728441, porcentagemVotos: 13.64},
     { id: 9, nome: "Celso Russomanno", sigla: "REPUBLICANOS", imagem: "https://img.estadao.com.br/fotos/politica/eleicoes-2020/SP/FSP250001094597_div.jpg", qtdTotalVotos: 560666, porcentagemVotos: 10.50}
   ]
-
+  
   const [searchTerm, setSearchTerm] = useState('');
-
 
   return (
     <div className="container_eleitorado">
@@ -32,8 +33,15 @@ function Eleitorado(){
         }
       }).map((dados, key) => (
         <div className="container_candidate" key={key}>
-        <div className="container_imagem">
+        <div className="container_imagem">   
+        <CircularProgressbar 
+          value={dados.porcentagemVotos} 
+          text={`${dados.porcentagemVotos}%`} 
+          className="imagem_eleitorado--circle"
+          strokeWidth="5"
+          />
           <div className="imagem_eleitorado--landscape">
+            
             <img className="imagem_eleitorado" src={dados.imagem} alt="Eleitorados" />
           </div>
         </div>

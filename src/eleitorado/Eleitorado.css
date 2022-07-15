@@ -29,10 +29,23 @@
 }
 
 .imagem_eleitorado--landscape{
-  display: inline-block; position: relative; width: 4.75rem; height: 4.75rem; overflow: hidden; border-radius: 50%;
+  display: inline-block; 
+  position: absolute; 
+  width: 5rem ; 
+  height: 5rem; 
+  overflow: hidden; 
+  border-radius: 50%;
+}
+
+.imagem_eleitorado--circle{
+  display: inline-block; 
+  position: relative; 
+  height: 6rem !important;
+  overflow: hidden; 
+  border-radius: 50%;
 }
 .imagem_eleitorado--landscape .imagem_eleitorado{
-  width: auto;
+  width: 80px;
   height: 108px;
 }
 
@@ -99,4 +112,13 @@
   .container_eleitorado{
     grid-template-columns: repeat(1,1fr);
   }
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #3448ee !important;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #fff !important;
+  stroke-linecap: round;
 }
