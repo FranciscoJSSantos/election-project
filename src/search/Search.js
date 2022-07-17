@@ -27,20 +27,20 @@ function Search(){
   const [open, setOpen] = React.useState(false);
 
   //pega o valor do estado
-  const [getMunicipio, setMunicipio] = React.useState('');
+  const [getEstado, setEstado] = React.useState('');
 
-  const [getNewMunicipio, setNewMunicipio] = React.useState([]);
+  const [getMunicipio, setMunicipio] = React.useState([]);
 
   const [city, setCity] = React.useState('');
 
   //está com a lista de estados
-  const [user, setUser] = React.useState([]);
+  const [getNewEstado, setNewEstado] = React.useState([]);
 
   React.useEffect(() => {
     api
       .get("?orderBy=nome")
       .then((response) => {
-        setUser(response.data)
+        setNewEstado(response.data)
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
@@ -48,7 +48,7 @@ function Search(){
   }, []);
 
   const handleChangeState = (event) => {
-    setMunicipio(String(event.target.value) || '');
+    setEstado(String(event.target.value) || '');
   };
 
   const handleChangeState2 = (event) => {
@@ -94,21 +94,21 @@ function Search(){
 
   React.useEffect(() => {
     api
-      .get(`${getMunicipio}/distritos`)
+      .get(`${getEstado}/distritos`)
       .then((response) => {
-        setNewMunicipio(response.data)
+        setMunicipio(response.data)
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }, [getMunicipio]);
+  }, [getEstado]);
 
   return( 
     <div className="search_container">
 
       <div className="search_dropdown">
         <FaMapMarkerAlt className="search_icon_map"/>
-        <p>{city}, {getMunicipio}</p>
+        <p>{city}, {getEstado}</p>
         <IoIosArrowDown className="search_icon_arrow" onClick={handleClickOpen}/>
       </div>
 
@@ -125,13 +125,13 @@ function Search(){
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
-                value={getMunicipio}
+                value={getEstado}
                 onChange={handleChangeState}
                 input={<OutlinedInput label="Estado" 
                 key={Math.random() * 100}/>}
                 defaultValue=""
               >
-                {user.map((dados) => (
+                {getNewEstado.map((dados) => (
                     <MenuItem key={dados.id} value={dados.sigla}>{dados.nome}
                     </MenuItem>
                 ))}
@@ -149,7 +149,7 @@ function Search(){
                 input={<OutlinedInput label="Município" />}
                 defaultValue=""
               >
-                {getNewMunicipio.map((dados) => (
+                {getMunicipio.map((dados) => (
                     <MenuItem key={dados.id} value={dados.nome}>{dados.nome}
                     </MenuItem>
                 ))}
