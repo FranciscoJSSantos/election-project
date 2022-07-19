@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography'
 
-import api from '../api';
+import api, { useFetch } from '../api';
 
 function Search(){
 
@@ -34,18 +34,20 @@ function Search(){
   const [city, setCity] = React.useState('');
 
   //está com a lista de estados
-  const [getNewEstado, setNewEstado] = React.useState([]);
+  // const [getNewEstado, setNewEstado] = React.useState([]);
 
-  React.useEffect(() => {
-    api
-      .get("?orderBy=nome")
-      .then((response) => {
-        setNewEstado(response.data)
-      })
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-  }, []);
+  const { data: estados } = useFetch('?orderBy=nome');
+
+  // React.useEffect(() => {
+  //   api
+  //     .get("?orderBy=nome")
+  //     .then((response) => {
+  //       setNewEstado(response.data)
+  //     })
+  //     .catch((err) => {
+  //       console.error("ops! ocorreu um erro" + err);
+  //     });
+  // }, []);
 
   const handleChangeState = (event) => {
     setEstado(String(event.target.value) || '');
@@ -128,11 +130,11 @@ function Search(){
                 value={getEstado}
                 onChange={handleChangeState}
                 input={<OutlinedInput label="Estado" 
-                key={Math.random() * 100}/>}
+                key={Math.random() * 1000}/>}
                 defaultValue=""
               >
-                {getNewEstado.map((dados) => (
-                    <MenuItem key={dados.id} value={dados.sigla}>{dados.nome}
+                {estados?.map((dados, index) => (
+                    <MenuItem key={index} value={dados.sigla}>{dados.nome}
                     </MenuItem>
                 ))}
                

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -70,6 +70,17 @@ export default function FormDialog() {
     );
   });
 
+  const [searchCandidate, setSearchCandidate] = useState('');
+
+  function changeeValueInfo(e){
+    setSearchCandidate(e.target.value);
+  }
+
+  React.useEffect(() => {
+    localStorage.setItem('nomeCandidato', searchCandidate);
+  })
+
+  
   return (
     <div>
       <Button className="button_search" onClick={handleClickOpen}>
@@ -84,16 +95,19 @@ export default function FormDialog() {
             <InputBase
               className={classes.input}
               placeholder="Nome, número, partido..."
+              onChange={changeeValueInfo} 
             />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+            <IconButton className={classes.iconButton} >
               <SearchIcon />
             </IconButton>
           </Paper>
         </DialogContent>
         <DialogActions sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
-          <Button onClick={handleClose}>Confirmar</Button>
+          <Button onClick={handleClose} aria-label="search">Confirmar</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
+
+export const itemCandidato =  localStorage.getItem('nomeCandidato');
